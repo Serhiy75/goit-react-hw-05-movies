@@ -21,7 +21,7 @@ export function getMovieDetails(id) {
   return axios2.get(`/movie/${id}`).then(res => res.data);
 }
 
-export function getMovieCredits(id) {
+export function getMovieCast(id) {
   return axios2.get(`/movie/${id}/credits`).then(res => res.data);
 }
 
