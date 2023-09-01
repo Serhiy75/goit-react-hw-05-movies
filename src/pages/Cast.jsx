@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getMovieCast } from 'service/movieApi';
 const defaultImg =
   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
-export const Cast = () => {
+const Cast = () => {
   const [creditCast, setCreditCast] = useState('');
   const { id } = useParams();
   useEffect(() => {
@@ -34,3 +34,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;

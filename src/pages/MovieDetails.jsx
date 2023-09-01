@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { getMovieDetails } from '../service/movieApi.js';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 const defaultImg =
   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const { id } = useParams();
   const location = useLocation();
@@ -13,6 +13,7 @@ export const MovieDetails = () => {
   useEffect(() => {
     getMovieDetails(id).then(data => {
       setMovie(data);
+      // console.log(data);
     });
   }, [id]);
   if (!movie) return;
@@ -38,6 +39,14 @@ export const MovieDetails = () => {
           <h2>{movie.title}</h2>
           <p>Overview: {movie.overview}</p>
           <p>Genres: {movie.genres.map(el => el.name).join(',')}</p>
+          <p>
+            Production companies :{' '}
+            {movie.production_companies.map(el => el.name).join(',')}
+          </p>
+          <p>
+            Production countries:{' '}
+            {movie.production_countries.map(el => el.name).join(',')}
+          </p>
           <p>Popularity: {movie.popularity}</p>
         </div>
       </div>
@@ -53,10 +62,13 @@ export const MovieDetails = () => {
         </li>
         <hr />
       </ul>
-
-      <Outlet />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
-// genres;
+
+export default MovieDetails;
+// genres:([{obj} {obj} {obj}]);
 // original_title;overview;title;poster_path;popularity

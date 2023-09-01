@@ -1,10 +1,11 @@
+import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
 export const Layout = () => {
   return (
     <>
-      <header>
-        <nav className="header">
+      <header className="header">
+        <nav>
           <ul>
             <li>
               <NavLink to="/">Home</NavLink>
@@ -15,7 +16,9 @@ export const Layout = () => {
           </ul>
         </nav>
       </header>
-      <Outlet />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

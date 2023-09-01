@@ -1,14 +1,14 @@
-// import { getTrending } from 'service/movieApi';
+import { lazy } from 'react';
 import { Layout } from './Layout/Layout';
-import { MovieDetails } from 'pages/MovieDetails';
-import { Movies } from 'pages/Movies';
-import { Home } from 'pages/Home';
 import { Route, Routes } from 'react-router-dom';
-import { Cast } from './Cast/Cast';
-import { Reviews } from './Reviews/Reviews';
+
+const Cast = lazy(() => import('pages/Cast'));
+const Home = lazy(() => import('pages/Home'));
+const MovieDetails = lazy(() => import('pages/MovieDetails'));
+const Movies = lazy(() => import('pages/Movies'));
+const Reviews = lazy(() => import('pages/Reviews'));
 
 export const App = () => {
-  // getTrending().then(res => console.log(res));
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
