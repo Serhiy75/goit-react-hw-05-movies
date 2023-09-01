@@ -5,9 +5,9 @@ import { getTrending } from 'service/movieApi';
 export const Home = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    if (movies.length) return;
+    // if (movies.length) return;
     getTrending().then(data => {
-      console.log(data);
+      // console.log(data);
       setMovies(data.results);
     });
   }, []);

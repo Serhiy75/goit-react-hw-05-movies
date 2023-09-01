@@ -4,7 +4,7 @@ export const Layout = () => {
   return (
     <>
       <header>
-        <nav>
+        <nav className="header">
           <ul>
             <li>
               <NavLink to="/">Home</NavLink>

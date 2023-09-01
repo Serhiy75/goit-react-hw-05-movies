@@ -18,32 +18,42 @@ export const MovieDetails = () => {
   if (!movie) return;
 
   return (
-    <div style={{ padding: 20 }}>
+    <div className="movie-search">
+      <Link to={backLink.current} className="back">
+        Go Back
+      </Link>
       <hr />
-      <Link to={backLink.current}>Go Back!</Link>
-      <img
-        src={
-          movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-            : defaultImg
-        }
-        alt={movie.title}
-        width="300px"
-      />
-      <h2>{movie.title}</h2>
-      <p>Overview: {movie.overview}</p>
-      <p>Genres: {movie.genres.map(el => el.name).join(',')}</p>
-      <p>Popularity: {movie.popularity}</p>
-      <hr />
+      <div className="title">
+        <img
+          className="img"
+          src={
+            movie.poster_path
+              ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+              : defaultImg
+          }
+          alt={movie.title}
+          width="300px"
+        />
+        <div className="paragraf">
+          <h2>{movie.title}</h2>
+          <p>Overview: {movie.overview}</p>
+          <p>Genres: {movie.genres.map(el => el.name).join(',')}</p>
+          <p>Popularity: {movie.popularity}</p>
+        </div>
+      </div>
+
       <ul>
+        <hr />
+        <h4>Additional Information</h4>
         <li>
           <Link to="cast">Cast</Link>
         </li>
         <li>
           <Link to="reviews">Reviews</Link>
         </li>
+        <hr />
       </ul>
-      <hr />
+
       <Outlet />
     </div>
   );
